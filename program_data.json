@@ -1,0 +1,20 @@
+{
+  "people": [
+    { "name": "Alice", "team": "API Team", "role": "Manager" },
+    { "name": "Bob", "team": "Frontend Team", "role": "Developer" },
+    { "name": "Charlie", "team": "API Team", "role": "Lead Developer" },
+    { "name": "Dana", "team": "QA Team", "role": "Tester" }
+  ],
+  "teams": [
+    { "name": "API Team" },
+    { "name": "Frontend Team" },
+    { "name": "QA Team" },
+    { "name": "Operations Team" }
+  ],
+  "dependencies": [
+    { "from": "Frontend Team", "to": "API Team", "reason": "Needs API v2 by Q3" },
+    { "from": "QA Team", "to": "Frontend Team", "reason": "Testing new UI by Q2" },
+    { "from": "QA Team", "to": "API Team", "reason": "Testing API v2 by Q3" },
+    { "from": "Operations Team", "to": "API Team", "reason": "Deployment setup for API v2 by end of Q3" }
+  ]
+} 
