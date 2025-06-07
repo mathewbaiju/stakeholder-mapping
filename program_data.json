@@ -2,7 +2,7 @@
   "initiative": {
     "id": "PBE-3849",
     "name": "Cloud Infrastructure",
-    "description": "Cloud Infrastructure",
+    "description": "Cloud Infrastructure program delivers outcomes for infrastructure needed to carry out the work in the platform, and in a standard way, for App Product Teams.",
     "status": "In Progress",
     "start_date": "2024-01-01",
     "end_date": "2024-01-01",
@@ -16,7 +16,14 @@
       {
         "id": "PBE-2346",
         "name": "Cloud Deployments",
-        "status": "Closed"
+        "status": "Closed",
+        "depends_on": [
+          {
+            "id": "PBE-9999",
+            "name": "Nested Dependency 1",
+            "status": "On Track"
+          }
+        ]
       },
       {
         "id": "PBE-3893",
