@@ -7,78 +7,39 @@ def generate_mermaid_id(name):
     clean_name = ''.join(char for char in name if char.isalnum() or char.isspace() or char == '_')
     return clean_name.replace(" ", "_").replace("-", "_")
 
-def generate_stakeholder_map(data):
-    """Generates a Mermaid diagram definition from program data."""
-    mermaid_string = "graph TD;\\n"
-    mermaid_string += "    %% Styles (optional, but can make it look nicer)\\n"
-    mermaid_string += "    classDef person fill:#D5F5E3,stroke:#1E8449,stroke-width:2px,color:#000;\\n"
-    mermaid_string += "    classDef team fill:#EBF5FB,stroke:#2E86C1,stroke-width:2px,color:#000;\\n\\n"
+def generate_dependency_map(data):
+    """Generates a Mermaid diagram definition from dependency data."""
+    mermaid_string = "graph LR;\\n"
     
-    mermaid_string += "    %% Stakeholders (People) and Team Nodes\\n"
-
-    people = data.get("people", [])
-    teams_from_people = {person.get("team") for person in people if person.get("team")}
+    initiative_id = generate_mermaid_id(data.get("id", "initiative"))
+    initiative_name = data.get("name", "Initiative")
+    mermaid_string += f'    classDef initiative fill:#FADBD8,stroke:#C0392B,stroke-width:2px,color:#000;\\n'
+    mermaid_string += f'    {initiative_id}("{initiative_name}");\\n'
+    mermaid_string += f"    class {initiative_id} initiative;\\n\\n"
     
-    # Collect all unique team names from people, explicit team list, and dependencies
-    all_team_names = set(teams_from_people)
-    for team_entry in data.get("teams", []): # Ensure all teams from "teams" list are considered
-        all_team_names.add(team_entry.get("name"))
-    for dep in data.get("dependencies", []):
-        all_team_names.add(dep.get("from"))
-        all_team_names.add(dep.get("to"))
-    all_team_names.discard(None) # Remove None if any team was not specified
+    # Process 'depends_on' relationships
+    depends_on = data.get("depends_on", [])
+    if depends_on:
+        mermaid_string += "    %% depends_on\\n"
+        for item in depends_on:
+            item_id = generate_mermaid_id(item["id"])
+            item_name = item["name"].replace('"', '#quot;')
+            item_status = item.get("status", "")
+            mermaid_string += f'    {item_id}("{item_name}<br/><i>{item_status}</i>");\\n'
+            mermaid_string += f'    {initiative_id} -- "depends on" --> {item_id};\\n'
+        mermaid_string += "\\n"
 
-    # Create team nodes
-    team_nodes = {}
-    for team_name in sorted(list(all_team_names)): # Sort for consistent output
-        team_id = f"team_{generate_mermaid_id(team_name)}"
-        team_nodes[team_name] = team_id
-        mermaid_string += f'    {team_id}[\\"{team_name}\\"];\\n'
-        mermaid_string += f'    class {team_id} team;\\n'
-        
-    mermaid_string += "\\n"
-
-    # Process people and link to their teams
-    for person in sorted(people, key=lambda x: x.get("name", "")): # Sort for consistent output
-        person_name = person.get("name", "Unnamed Person")
-        person_id = f"person_{generate_mermaid_id(person_name)}"
-        team_name = person.get("team")
-        role = person.get("role", "N/A")
-        
-        mermaid_string += f'    {person_id}[\\"{person_name}<br/><i>{role}</i>\\"];\\n'
-        mermaid_string += f'    class {person_id} person;\\n'
-        
-        if team_name and team_name in team_nodes:
-            team_id = team_nodes[team_name]
-            mermaid_string += f"    {person_id} -->|member of| {team_id};\\n"
-        elif team_name: # Team mentioned with person but not in explicit list or deps
-            # This case should ideally be handled by the comprehensive all_team_names collection
-            # but as a fallback, create the team node if somehow missed.
-            fallback_team_id = f"team_{generate_mermaid_id(team_name)}"
-            if team_name not in team_nodes: # Check if truly missed
-                 mermaid_string += f'    {fallback_team_id}[\\"{team_name}\\"];\\n'
-                 mermaid_string += f'    class {fallback_team_id} team;\\n'
-                 team_nodes[team_name] = fallback_team_id # Add to known nodes
-            mermaid_string += f"    {person_id} -->|member of| {fallback_team_id};\\n"
-
-
-    mermaid_string += "\\n    %% Team Dependencies\\n"
-    for dep in data.get("dependencies", []):
-        from_team_name = dep.get("from")
-        to_team_name = dep.get("to")
-        reason = dep.get("reason", "Dependency")
-
-        if from_team_name and to_team_name and from_team_name in team_nodes and to_team_name in team_nodes:
-            from_team_id = team_nodes[from_team_name]
-            to_team_id = team_nodes[to_team_name]
-            # Escape quotes in reason for Mermaid string
-            escaped_reason = reason.replace('"', '#quot;') 
-            mermaid_string += f'    {from_team_id} -- \\"{escaped_reason}\\" --> {to_team_id};\\n'
-        else:
-            if not from_team_name or from_team_name not in team_nodes:
-                print(f"Warning: Dependency source team '{from_team_name}' not found or defined. Skipping dependency.")
-            if not to_team_name or to_team_name not in team_nodes:
-                print(f"Warning: Dependency target team '{to_team_name}' not found or defined. Skipping dependency.")
+    # Process 'is_dependency_for' relationships
+    is_dependency_for = data.get("is_dependency_for", [])
+    if is_dependency_for:
+        mermaid_string += "    %% is_dependency_for\\n"
+        for item in is_dependency_for:
+            item_id = generate_mermaid_id(item["id"])
+            item_name = item["name"].replace('"', '#quot;')
+            item_status = item.get("status", "")
+            mermaid_string += f'    {item_id}("{item_name}<br/><i>{item_status}</i>");\\n'
+            mermaid_string += f'    {item_id} -- "is dependency for" --> {initiative_id};\\n'
+        mermaid_string += "\\n"
                 
     return mermaid_string
 
@@ -103,7 +64,12 @@ def main():
         print(f"An error occurred while reading '{json_file_path}': {e}")
         return
 
-    diagram_definition = generate_stakeholder_map(data)
+    initiative_data = data.get("initiative")
+    if not initiative_data:
+        print("Error: 'initiative' key not found in JSON data.")
+        return
+
+    diagram_definition = generate_dependency_map(initiative_data)
     
     print("\\nMermaid Diagram Definition (copy and paste into a Mermaid renderer):\\n")
     print(diagram_definition)

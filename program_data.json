@@ -1,20 +1,100 @@
 {
-  "people": [
-    { "name": "Alice", "team": "API Team", "role": "Manager" },
-    { "name": "Bob", "team": "Frontend Team", "role": "Developer" },
-    { "name": "Charlie", "team": "API Team", "role": "Lead Developer" },
-    { "name": "Dana", "team": "QA Team", "role": "Tester" }
-  ],
-  "teams": [
-    { "name": "API Team" },
-    { "name": "Frontend Team" },
-    { "name": "QA Team" },
-    { "name": "Operations Team" }
-  ],
-  "dependencies": [
-    { "from": "Frontend Team", "to": "API Team", "reason": "Needs API v2 by Q3" },
-    { "from": "QA Team", "to": "Frontend Team", "reason": "Testing new UI by Q2" },
-    { "from": "QA Team", "to": "API Team", "reason": "Testing API v2 by Q3" },
-    { "from": "Operations Team", "to": "API Team", "reason": "Deployment setup for API v2 by end of Q3" }
-  ]
-} 
+  "initiative": {
+    "id": "PBE-3849",
+    "name": "Cloud Infrastructure",
+    "description": "Cloud Infrastructure",
+    "status": "In Progress",
+    "start_date": "2024-01-01",
+    "end_date": "2024-01-01",
+    "owner": "Baiju Mathew",
+    "depends_on": [
+      {
+        "id": "PBE-3895",
+        "name": "Azure Kubernetes Service support for ...",
+        "status": "On Hold"
+      },
+      {
+        "id": "PBE-2346",
+        "name": "Cloud Deployments",
+        "status": "Closed"
+      },
+      {
+        "id": "PBE-3893",
+        "name": "UCP available in FedRAMP",
+        "status": "Closed"
+      },
+      {
+        "id": "PBE-3885",
+        "name": "Adoption of CloudOS capabilities & ke...",
+        "status": "On Track"
+      },
+      {
+        "id": "PBE-3886",
+        "name": "Standards are more widely implemented...",
+        "status": "On Track"
+      },
+      {
+        "id": "PBE-3887",
+        "name": "R@S: Observability/Monitoring via new...",
+        "status": "On Track"
+      },
+      {
+        "id": "PBE-3888",
+        "name": "R@S: Prerequisites for R13N - Network...",
+        "status": "On Track"
+      },
+      {
+        "id": "PBE-3889",
+        "name": "R@S: Service to Service Allow Listin...",
+        "status": "On Track"
+      },
+      {
+        "id": "PBE-3890",
+        "name": "R@S: Configuration Management \"extern...",
+        "status": "On Track"
+      },
+      {
+        "id": "PBE-3891",
+        "name": "R@S: Dacloud Service Support (aka \"co...",
+        "status": "On Track"
+      },
+      {
+        "id": "PBE-3892",
+        "name": "Formalize UCP polices and governance ...",
+        "status": "On Track"
+      },
+      {
+        "id": "PBE-3894",
+        "name": "Reduce cloud deployment failure rate ...",
+        "status": "On Track"
+      },
+      {
+        "id": "PBE-3896",
+        "name": "Provide a delightful employee experie...",
+        "status": "On Track"
+      },
+      {
+        "id": "PBE-4089",
+        "name": "R@S: System Model Adoption and Depend...",
+        "status": "On Track"
+      },
+      {
+        "id": "PBE-2652",
+        "name": "CloudOS Compute to Autodesk Compute P...",
+        "status": "Executing"
+      }
+    ],
+    "is_dependency_for": [
+      {
+        "id": "PBE-2688",
+        "name": "Developer Productivity",
+        "status": "Executing"
+      },
+      {
+        "id": "PBE-3991",
+        "name": "Regionalization",
+        "status": "Executing"
+      }
+    ]
+  }
+}
