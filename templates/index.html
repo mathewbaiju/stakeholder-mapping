@@ -9,13 +9,34 @@
 </head>
 <body>
     <h1>Platform Strategic Initiatives Explorer</h1>
-    <div id="controls">
-        <input type="text" id="filter-input" placeholder="Enter ID to filter...">
-        <button id="filter-button">Filter</button>
-        <button id="clear-button">Clear</button>
+    
+    <div class="main-container">
+        <div class="table-container">
+            <h2 id="table-title">Outcomes</h2>
+            <table id="outcomes-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be added dynamically -->
+                </tbody>
+            </table>
+        </div>
+        <div class="network-container">
+            <div id="controls">
+                <input type="text" id="filter-input" placeholder="Enter ID to filter...">
+                <button id="filter-button">Filter</button>
+                <button id="clear-button">Clear</button>
+            </div>
+            <div id="legend"></div>
+            <div id="mynetwork"></div>
+        </div>
     </div>
-    <div id="legend"></div>
-    <div id="mynetwork"></div>
+
     <script src="/static/script.js"></script>
 </body>
 </html> 

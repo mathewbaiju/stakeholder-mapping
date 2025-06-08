@@ -6,9 +6,43 @@ body {
     padding: 20px;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
     color: #0056b3;
+}
+
+.main-container {
+    display: flex;
+    gap: 20px;
+}
+
+.table-container {
+    flex: 1;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 90vh;
+    overflow-y: auto;
+}
+
+.network-container {
+    flex: 3;
+}
+
+#outcomes-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#outcomes-table th, #outcomes-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#outcomes-table th {
+    background-color: #f2f2f2;
 }
 
 #controls {
