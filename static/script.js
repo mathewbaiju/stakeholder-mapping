@@ -121,8 +121,18 @@ document.addEventListener('DOMContentLoaded', function() {
         tableTitle.textContent = `Outcomes for ${item.name}`;
 
         const outcomes = item.depends_on ? item.depends_on.filter(dep => dep.type === 'outcome') : [];
-
-        if (outcomes.length > 0) {
+        
+        // If the clicked item is the program itself, list its direct dependencies (which are outcomes)
+        if (item.id === allData.program.id) {
+            if (item.depends_on) {
+                item.depends_on.forEach(outcome => {
+                    const row = tableBody.insertRow();
+                    row.insertCell(0).textContent = outcome.id;
+                    row.insertCell(1).textContent = outcome.name;
+                    row.insertCell(2).textContent = outcome.status;
+                });
+            }
+        } else if (outcomes.length > 0) { // For any other item that might have outcomes
             outcomes.forEach(outcome => {
                 const row = tableBody.insertRow();
                 row.insertCell(0).textContent = outcome.id;
