@@ -118,32 +118,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function populateTable(item) {
         tableBody.innerHTML = ''; // Clear existing rows
-        tableTitle.textContent = `Outcomes for ${item.name}`;
 
-        const outcomes = item.depends_on ? item.depends_on.filter(dep => dep.type === 'outcome') : [];
-        
-        // If the clicked item is the program itself, list its direct dependencies (which are outcomes)
-        if (item.id === allData.program.id) {
-            if (item.depends_on) {
-                item.depends_on.forEach(outcome => {
+        if (item.type === 'program' && item.depends_on) {
+            tableTitle.textContent = `Outcomes for ${item.name}`;
+            const outcomes = item.depends_on.filter(dep => dep.type === 'outcome');
+            
+            if (outcomes.length > 0) {
+                outcomes.forEach(outcome => {
                     const row = tableBody.insertRow();
                     row.insertCell(0).textContent = outcome.id;
                     row.insertCell(1).textContent = outcome.name;
                     row.insertCell(2).textContent = outcome.status;
                 });
-            }
-        } else if (outcomes.length > 0) { // For any other item that might have outcomes
-            outcomes.forEach(outcome => {
+            } else {
                 const row = tableBody.insertRow();
-                row.insertCell(0).textContent = outcome.id;
-                row.insertCell(1).textContent = outcome.name;
-                row.insertCell(2).textContent = outcome.status;
-            });
+                const cell = row.insertCell(0);
+                cell.colSpan = 3;
+                cell.textContent = 'No outcomes for this program.';
+                cell.style.textAlign = 'center';
+            }
         } else {
+            tableTitle.textContent = 'Outcomes';
             const row = tableBody.insertRow();
             const cell = row.insertCell(0);
             cell.colSpan = 3;
-            cell.textContent = 'No outcomes found for this item.';
+            cell.textContent = 'Select a program to see its outcomes.';
             cell.style.textAlign = 'center';
         }
     }
@@ -158,6 +157,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             allData = data;
+            if(allData.program) {
+                allData.program.type = 'program';
+            }
             buildAllNodesMap(allData.initiative);
             drawNetwork();
             createLegend();
