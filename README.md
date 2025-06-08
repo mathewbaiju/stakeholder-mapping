@@ -1,4 +1,4 @@
-# Interactive Dependency Map
+# Platform Strategic Initiatives Explorer
 
 This tool provides a dynamic, interactive visualization of program initiatives and their dependencies. It launches a web-based interface that reads data from a `program_data.json` file and generates a color-coded, interactive dependency map.
 
