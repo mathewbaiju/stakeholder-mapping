@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('mynetwork');
     const legendContainer = document.getElementById('legend');
     const allNodesMap = new Map();
+    const tableBody = document.getElementById('outcomes-table').getElementsByTagName('tbody')[0];
+    const filterInput = document.getElementById('filter-input');
 
     function drawNetwork(filterId = null) {
         if (!allData.initiative) return;
@@ -109,6 +111,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function populateTable(program) {
+        tableBody.innerHTML = ''; // Clear existing rows
+        if (program && program.depends_on) {
+            program.depends_on.forEach(outcome => {
+                if (outcome.type === 'outcome') {
+                    const row = tableBody.insertRow();
+                    row.insertCell(0).textContent = outcome.id;
+                    row.insertCell(1).textContent = outcome.name;
+                    row.insertCell(2).textContent = outcome.status;
+                }
+            });
+        }
+    }
+
     function buildAllNodesMap(item) {
         allNodesMap.set(item.id, item);
         if (item.depends_on) item.depends_on.forEach(buildAllNodesMap);
@@ -122,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
             buildAllNodesMap(allData.initiative);
             drawNetwork();
             createLegend();
+            populateTable(allData.program);
         })
         .catch(error => console.error('Error fetching data:', error));
 
