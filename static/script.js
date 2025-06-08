@@ -160,7 +160,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if(allData.program) {
                 allData.program.type = 'program';
             }
-            buildAllNodesMap(allData.initiative);
+            buildAllNodesMap(allData.program);
+            
+            const network = new vis.Network(container, { nodes, edges }, options);
+            
+            network.on('click', function(params) {
+                // ... click listener logic
+            });
+
             drawNetwork();
             createLegend();
             populateTable(allData.program);
