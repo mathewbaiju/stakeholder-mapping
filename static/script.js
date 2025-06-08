@@ -1,9 +1,82 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // --- Global State ---
     let allData = {};
-    let network = null;
+    const allNodesMap = new Map();
+    const nodes = new vis.DataSet();
+    const edges = new vis.DataSet();
+
+    // --- DOM Elements ---
     const container = document.getElementById('mynetwork');
     const legendContainer = document.getElementById('legend');
-    const allNodesMap = new Map();
+    const filterInput = document.getElementById('filter-input');
+    const filterButton = document.getElementById('filter-button');
+    const clearButton = document.getElementById('clear-button');
+    const tableTitle = document.getElementById('table-title');
+    const tableBody = document.getElementById('outcomes-table').getElementsByTagName('tbody')[0];
+
+    // --- Configuration ---
+    const options = {
+        nodes: { shape: 'box' },
+        layout: {
+            hierarchical: {
+                direction: 'LR',
+                sortMethod: 'directed',
+                levelSeparation: 250,
+                nodeSpacing: 150
+            }
+        },
+        groups: {
+            'On Hold':     { color: { background: '#E5E7E9', border: '#7F8C8D' } },
+            'In Progress': { color: { background: '#D5F5E3', border: '#1E8449' } },
+            'Executing':   { color: { background: '#D5F5E3', border: '#1E8449' } },
+            'On Track':    { color: { background: '#D5F5E3', border: '#1E8449' } },
+            'Blocked':     { color: { background: '#FADBD8', border: '#C0392B' } },
+            'At Risk':     { color: { background: '#FADBD8', border: '#C0392B' } },
+            'Closed':      { color: { background: '#EBF5FB', border: '#2E86C1' } }
+        }
+    };
+
+    // --- Functions ---
+
+    function populateTable(item) {
+        tableBody.innerHTML = ''; // Clear existing rows
+
+        if (item.type === 'program' && item.depends_on) {
+            tableTitle.textContent = `Outcomes for ${item.name}`;
+            const outcomes = item.depends_on.filter(dep => dep.type === 'outcome');
+            
+            if (outcomes.length > 0) {
+                const JIRA_BASE_URL = "https://jira.autodesk.com/browse/";
+                outcomes.forEach(outcome => {
+                    const row = tableBody.insertRow();
+                    const idCell = row.insertCell(0);
+                    idCell.innerHTML = `<a href="${JIRA_BASE_URL}${outcome.id}" target="_blank">${outcome.id}</a>`;
+                    row.insertCell(1).textContent = outcome.name;
+                    row.insertCell(2).textContent = outcome.status;
+                });
+            } else {
+                const row = tableBody.insertRow();
+                const cell = row.insertCell(0);
+                cell.colSpan = 3;
+                cell.textContent = 'No outcomes for this program.';
+                cell.style.textAlign = 'center';
+            }
+        } else {
+            tableTitle.textContent = 'Outcomes';
+            const row = tableBody.insertRow();
+            const cell = row.insertCell(0);
+            cell.colSpan = 3;
+            cell.textContent = 'Select a program to see its outcomes.';
+            cell.style.textAlign = 'center';
+        }
+    }
+
+    function buildAllNodesMap(item) {
+        if (!item) return;
+        allNodesMap.set(item.id, item);
+        if (item.depends_on) item.depends_on.forEach(buildAllNodesMap);
+        if (item.is_dependency_for) item.is_dependency_for.forEach(buildAllNodesMap);
+    }
 
     function updateDetailsTable(itemData) {
         if (!itemData) {
@@ -57,43 +130,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function drawNetwork(filterId = null) {
-        if (!allData.program) return;
-
-        const nodes = new vis.DataSet();
-        const edges = new vis.DataSet();
         const program = allData.program;
+        if (!program) return;
+        
+        const nodesToAdd = [];
+        const edgesToAdd = [];
 
-        nodes.add({ id: program.id, label: program.name, title: program.description, group: 'program', level: 1 });
+        nodesToAdd.push({ id: program.id, label: program.name, group: program.status, level: 1, title: program.description });
 
         program.is_dependency_for.forEach(item => {
-            nodes.add({ id: item.id, label: item.name, group: item.status, level: 0 });
-            edges.add({ from: item.id, to: program.id, label: 'is dependency for' });
+            nodesToAdd.push({ id: item.id, label: item.name, group: item.status, level: 0, title: item.description });
+            edgesToAdd.push({ from: item.id, to: program.id, label: 'is dependency for' });
         });
 
-        let dependsOn = program.depends_on;
+        let dependsOn = program.depends_on || [];
         if (filterId) {
-            dependsOn = dependsOn.filter(item => item.id === filterId);
+            dependsOn = dependsOn.filter(dep => dep.id === filterId);
         }
 
         dependsOn.forEach(item => {
-            nodes.add({ id: item.id, label: item.name, group: item.status, level: 2 });
-            edges.add({ from: program.id, to: item.id, label: 'depends on' });
+            nodesToAdd.push({ id: item.id, label: item.name, group: item.status, level: 2, title: item.description });
+            edgesToAdd.push({ from: program.id, to: item.id, label: 'depends on' });
         });
 
-        const graphData = { nodes, edges };
-        const options = {
-            nodes: { shape: 'box' },
-            layout: { hierarchical: { direction: 'LR', levelSeparation: 300, nodeSpacing: 200, sortMethod: 'directed' } },
-            groups: {
-                program: { color: { background: '#FADBD8', border: '#C0392B' } },
-                'On Hold': { color: { background: '#FCF3CF', border: '#F1C40F' } },
-                'Closed': { color: { background: '#D5F5E3', border: '#1E8449' } },
-                'On Track': { color: { background: '#EBF5FB', border: '#2E86C1' } },
-                'Executing': { color: { background: '#F5B7B1', border: '#C0392B' } },
-                'In Progress': { color: { background: '#FADBD8', border: '#C0392B' } }
-            }
-        };
-        network = new vis.Network(container, graphData, options);
+        nodes.clear();
+        edges.clear();
+        nodes.add(nodesToAdd);
+        edges.add(edgesToAdd);
+
+        network = new vis.Network(container, { nodes, edges }, options);
         
         network.on("click", function(params) {
             if (params.nodes.length > 0) {
@@ -151,17 +216,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function createLegend() {
         legendContainer.innerHTML = '';
-        const groups = {
-            program: { color: { background: '#FADBD8', border: '#C0392B' } },
-            'On Hold': { color: { background: '#FCF3CF', border: '#F1C40F' } },
-            'Closed': { color: { background: '#D5F5E3', border: '#1E8449' } },
-            'On Track': { color: { background: '#EBF5FB', border: '#2E86C1' } },
-            'Executing': { color: { background: '#F5B7B1', border: '#C0392B' } },
-            'In Progress': { color: { background: '#FADBD8', border: '#C0392B' } }
-        };
-        for (const groupName in groups) {
-            const color = groups[groupName].color.background;
-            const border = groups[groupName].color.border;
+        for (const groupName in options.groups) {
+            const color = options.groups[groupName].color.background;
+            const border = options.groups[groupName].color.border;
             const legendItem = document.createElement('div');
             legendItem.className = 'legend-item';
             legendItem.innerHTML = `<div class="legend-color-box" style="background-color: ${color}; border: 1px solid ${border};"></div> ${groupName}`;
@@ -169,36 +226,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function buildAllNodesMap(item) {
-        allNodesMap.set(item.id, item);
-        if (item.depends_on) item.depends_on.forEach(buildAllNodesMap);
-        if (item.is_dependency_for) item.is_dependency_for.forEach(buildAllNodesMap);
-    }
-    
+    // --- Initialization and Event Listeners ---
+
     fetch('/api/data')
         .then(response => response.json())
         .then(data => {
             allData = data;
+            if (allData.program) allData.program.type = 'program';
             buildAllNodesMap(allData.program);
             drawNetwork();
             createLegend();
-        })
-        .catch(error => console.error('Error fetching data:', error));
+            populateTable(allData.program);
+        });
 
-    document.getElementById('filter-button').addEventListener('click', () => {
-        const filterId = document.getElementById('filter-input').value;
-        const selectedNode = allNodesMap.get(filterId);
-        
-        // Update tables before applying filter
-        if (selectedNode) {
-            updateDetailsTable(selectedNode);
-        }
-        
-        drawNetwork(filterId);
+    filterButton.addEventListener('click', () => {
+        drawNetwork(filterInput.value);
+        populateTable(allData.program);
     });
 
-    document.getElementById('clear-button').addEventListener('click', () => {
-        document.getElementById('filter-input').value = '';
+    clearButton.addEventListener('click', () => {
+        filterInput.value = '';
         drawNetwork();
+        populateTable(allData.program);
     });
 }); 
