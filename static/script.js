@@ -41,14 +41,16 @@ document.addEventListener('DOMContentLoaded', function() {
     function populateTable(item) {
         tableBody.innerHTML = ''; // Clear existing rows
 
-        if (item && item.type === 'program' && item.depends_on) {
+        if (item.type === 'program' && item.depends_on) {
             tableTitle.textContent = `Outcomes for ${item.name}`;
             const outcomes = item.depends_on.filter(dep => dep.type === 'outcome');
             
             if (outcomes.length > 0) {
+                const JIRA_BASE_URL = "https://your-jira-instance.atlassian.net/browse/";
                 outcomes.forEach(outcome => {
                     const row = tableBody.insertRow();
-                    row.insertCell(0).textContent = outcome.id;
+                    const idCell = row.insertCell(0);
+                    idCell.innerHTML = `<a href="${JIRA_BASE_URL}${outcome.id}" target="_blank">${outcome.id}</a>`;
                     row.insertCell(1).textContent = outcome.name;
                     row.insertCell(2).textContent = outcome.status;
                 });
