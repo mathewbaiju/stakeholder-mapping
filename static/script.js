@@ -131,9 +131,14 @@ document.addEventListener('DOMContentLoaded', function() {
             createLegend();
         });
 
-    filterButton.addEventListener('click', () => drawNetwork(filterInput.value));
+    filterButton.addEventListener('click', () => {
+        drawNetwork(filterInput.value);
+        populateTable(allData.program);
+    });
+
     clearButton.addEventListener('click', () => {
         filterInput.value = '';
         drawNetwork();
+        populateTable(allData.program);
     });
 }); 
