@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const outcomes = item.depends_on.filter(dep => dep.type === 'outcome');
             
             if (outcomes.length > 0) {
-                const JIRA_BASE_URL = "https://your-jira-instance.atlassian.net/browse/";
+                const JIRA_BASE_URL = "https://jira.autodesk.com/browse/";
                 outcomes.forEach(outcome => {
                     const row = tableBody.insertRow();
                     const idCell = row.insertCell(0);
