@@ -1,5 +1,6 @@
 {
-  "initiative": {
+  "program": {
+    "type": "program",
     "id": "PBE-3849",
     "name": "Cloud Infrastructure",
     "description": "Cloud Infrastructure program delivers outcomes for infrastructure needed to carry out the work in the platform, and in a standard way, for App Product Teams.",
@@ -9,16 +10,19 @@
     "owner": "Baiju Mathew",
     "depends_on": [
       {
+        "type": "outcome",
         "id": "PBE-3895",
         "name": "Azure Kubernetes Service support for ...",
         "status": "On Hold"
       },
       {
+        "type": "outcome",
         "id": "PBE-2346",
         "name": "Cloud Deployments",
         "status": "Closed",
         "depends_on": [
           {
+            "type": "epic",
             "id": "PBE-9999",
             "name": "Nested Dependency 1",
             "status": "On Track"
@@ -26,66 +30,79 @@
         ]
       },
       {
+        "type": "outcome",
         "id": "PBE-3893",
         "name": "UCP available in FedRAMP",
         "status": "Closed"
       },
       {
+        "type": "outcome",
         "id": "PBE-3885",
         "name": "Adoption of CloudOS capabilities & ke...",
         "status": "On Track"
       },
       {
+        "type": "outcome",
         "id": "PBE-3886",
         "name": "Standards are more widely implemented...",
         "status": "On Track"
       },
       {
+        "type": "outcome",
         "id": "PBE-3887",
         "name": "R@S: Observability/Monitoring via new...",
         "status": "On Track"
       },
       {
+        "type": "outcome",
         "id": "PBE-3888",
         "name": "R@S: Prerequisites for R13N - Network...",
         "status": "On Track"
       },
       {
+        "type": "outcome",
         "id": "PBE-3889",
         "name": "R@S: Service to Service Allow Listin...",
         "status": "On Track"
       },
       {
+        "type": "outcome",
         "id": "PBE-3890",
         "name": "R@S: Configuration Management \"extern...",
         "status": "On Track"
       },
       {
+        "type": "outcome",
         "id": "PBE-3891",
         "name": "R@S: Dacloud Service Support (aka \"co...",
         "status": "On Track"
       },
       {
+        "type": "outcome",
         "id": "PBE-3892",
         "name": "Formalize UCP polices and governance ...",
         "status": "On Track"
       },
       {
+        "type": "outcome",
         "id": "PBE-3894",
         "name": "Reduce cloud deployment failure rate ...",
         "status": "On Track"
       },
       {
+        "type": "outcome",
         "id": "PBE-3896",
         "name": "Provide a delightful employee experie...",
         "status": "On Track"
       },
       {
+        "type": "outcome",
         "id": "PBE-4089",
         "name": "R@S: System Model Adoption and Depend...",
         "status": "On Track"
       },
       {
+        "type": "outcome",
         "id": "PBE-2652",
         "name": "CloudOS Compute to Autodesk Compute P...",
         "status": "Executing"
@@ -93,11 +110,13 @@
     ],
     "is_dependency_for": [
       {
+        "type": "initiative",
         "id": "PBE-2688",
         "name": "Developer Productivity",
         "status": "Executing"
       },
       {
+        "type": "initiative",
         "id": "PBE-3991",
         "name": "Regionalization",
         "status": "Executing"

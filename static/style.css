@@ -39,6 +39,62 @@ h1 {
     background-color: #0056b3;
 }
 
+.container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.left-panel {
+    flex: 0 0 300px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.right-panel {
+    flex: 1;
+}
+
+#details-table h2, #outcomes-table h2 {
+    margin-top: 0;
+    color: #0056b3;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+#details-table table, #outcomes-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#details-table td {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+#details-table td:first-child {
+    font-weight: bold;
+    width: 100px;
+}
+
+#outcomes-table {
+    margin-top: 20px;
+}
+
+#outcomes-table th {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+}
+
+#outcomes-table td {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
 #legend {
     width: 100%;
     padding: 10px 0;
