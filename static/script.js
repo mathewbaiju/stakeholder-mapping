@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('mynetwork');
     const legendContainer = document.getElementById('legend');
     const allNodesMap = new Map();
+    const tableTitle = document.getElementById('table-title');
     const tableBody = document.getElementById('outcomes-table').getElementsByTagName('tbody')[0];
     const filterInput = document.getElementById('filter-input');
 
@@ -50,6 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (params.nodes.length > 0) {
                 const nodeId = params.nodes[0];
                 const itemData = allNodesMap.get(nodeId);
+
+                if (itemData) {
+                    populateTable(itemData);
+                }
 
                 // Populate the filter box
                 document.getElementById('filter-input').value = nodeId;
@@ -111,17 +116,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function populateTable(program) {
+    function populateTable(item) {
         tableBody.innerHTML = ''; // Clear existing rows
-        if (program && program.depends_on) {
-            program.depends_on.forEach(outcome => {
-                if (outcome.type === 'outcome') {
-                    const row = tableBody.insertRow();
-                    row.insertCell(0).textContent = outcome.id;
-                    row.insertCell(1).textContent = outcome.name;
-                    row.insertCell(2).textContent = outcome.status;
-                }
+        tableTitle.textContent = `Outcomes for ${item.name}`;
+
+        const outcomes = item.depends_on ? item.depends_on.filter(dep => dep.type === 'outcome') : [];
+
+        if (outcomes.length > 0) {
+            outcomes.forEach(outcome => {
+                const row = tableBody.insertRow();
+                row.insertCell(0).textContent = outcome.id;
+                row.insertCell(1).textContent = outcome.name;
+                row.insertCell(2).textContent = outcome.status;
             });
+        } else {
+            const row = tableBody.insertRow();
+            const cell = row.insertCell(0);
+            cell.colSpan = 3;
+            cell.textContent = 'No outcomes found for this item.';
+            cell.style.textAlign = 'center';
         }
     }
 
