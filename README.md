@@ -98,5 +98,8 @@ The interactive dependency map has several features to help you explore your dat
 
 The web application will render a live, interactive diagram that looks something like this:
 
-![image](https://github.com/user-attachments/assets/b48dbb87-14af-4624-a6d6-4d1b09723329)
+![image](https://github.com/user-attachments/assets/d7c3371e-030a-4ecf-a57b-04948e0a555e)
+
+![image](https://github.com/user-attachments/assets/d6896f20-c674-4e23-97bf-92aad03b8e6a)
+
 
