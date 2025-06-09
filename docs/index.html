@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Platform Strategic Initiatives Explorer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="welcome-page">
+    <div class="welcome-background">
+        <div class="gradient-overlay"></div>
+        <div class="animated-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </div>
+    
+    <div class="welcome-container">
+        <h1 class="welcome-title">Platform Strategic Initiatives Explorer</h1>
+        
+        <div class="selection-container">
+            <h2>Select a Program</h2>
+            <div class="program-cards">
+                
+                <div class="program-card" data-program="cloud-infrastructure">
+                    <span class="material-icons card-icon">
+                        cloud
+                        
+                    </span>
+                    <h3>Cloud Infrastructure</h3>
+                </div>
+                
+                <div class="program-card" data-program="internal-developer-portal">
+                    <span class="material-icons card-icon">
+                        web
+                        
+                    </span>
+                    <h3>Internal Developer Portal</h3>
+                </div>
+                
+                <div class="program-card" data-program="developer-tools">
+                    <span class="material-icons card-icon">
+                        code
+                        
+                    </span>
+                    <h3>Developer Tools</h3>
+                </div>
+                
+                <div class="program-card" data-program="observability">
+                    <span class="material-icons card-icon">
+                        visibility
+                        
+                    </span>
+                    <h3>Observability</h3>
+                </div>
+                
+                <div class="program-card" data-program="product-app-delivery">
+                    <span class="material-icons card-icon">
+                        rocket_launch
+                        
+                    </span>
+                    <h3>Product and App Delivery</h3>
+                </div>
+                
+            </div>
+
+            <h2>Select Your Role</h2>
+            <div class="role-cards">
+                <div class="role-card" data-role="executive">
+                    <span class="material-icons role-icon">corporate_fare</span>
+                    <h3>Executive</h3>
+                </div>
+                <div class="role-card" data-role="program-manager">
+                    <span class="material-icons role-icon">account_tree</span>
+                    <h3>Program Manager</h3>
+                </div>
+                <div class="role-card" data-role="engineering-manager">
+                    <span class="material-icons role-icon">engineering</span>
+                    <h3>Engineering Manager</h3>
+                </div>
+                <div class="role-card" data-role="product-manager">
+                    <span class="material-icons role-icon">psychology</span>
+                    <h3>Product Manager</h3>
+                </div>
+            </div>
+        </div>
+
+        <button class="proceed-button" disabled>
+            <span>Proceed</span>
+            <span class="material-icons">arrow_forward</span>
+        </button>
+    </div>
+
+    <script src="/static/welcome.js"></script>
+</body>
+</html> 

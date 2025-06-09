@@ -1,0 +1,123 @@
+{
+  "program": {
+    "id": "PBE-3851",
+    "name": "Observability",
+    "description": "Program tracking implementation of ADSK observability (System) stack, providing the data on which we base ADSK monitoring, alerting, and realtime tracking for our applications and services. While not a part of observability, this workstream also includes efforts around the surfacing of post-deployment analysis and SDLC insights",
+    "status": "In Progress",
+    "start_date": "2024-01-01",
+    "end_date": "2024-12-31",
+    "owner": "Mina Ileva",
+    "depends_on": [
+      {
+        "type": "outcome",
+        "id": "PBE-3914",
+        "name": "Platform Capability and Component SLA...",
+        "status": "open"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3915",
+        "name": "Customer Success Management for Obser...",
+        "status": "open"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3928",
+        "name": "Synthetic RFP",
+        "status": "Closed"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3916",
+        "name": "Tool-agnostic infrastructure: Synthetics",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3917",
+        "name": "Full Observability parity for all Reg...",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3918",
+        "name": "OTel telemetry optimizations",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3919",
+        "name": "Expand new telemetry capabilities Fed...",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3920",
+        "name": "Optimize for MTTD: Consolidate on Obs...",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3921",
+        "name": "Deliver Standardization - and EOL of ...",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3922",
+        "name": "Observability Support for Azure (Wind...",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3923",
+        "name": "Make Observability Data More Valuable...",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3924",
+        "name": "Trust Critical Workflow Monitoring",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3925",
+        "name": "SLI/SLO Tracking for all services for...",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3926",
+        "name": "Improve Use of Faros SDLC Insights Ac...",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-3927",
+        "name": "Streamline the Log Data Pipeline and ...",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-4281",
+        "name": "Alerting service IaC",
+        "status": "On Track"
+      },
+      {
+        "type": "outcome",
+        "id": "PBE-4342",
+        "name": "OTel Metrics have been dropping sinc...",
+        "status": "Respond"
+      }
+    ],
+    "is_dependency_for": [
+      {
+        "type": "initiative",
+        "id": "PBE-2688",
+        "name": "Developer Productivity",
+        "status": "Executing"
+      }
+    ]
+  }
+}
