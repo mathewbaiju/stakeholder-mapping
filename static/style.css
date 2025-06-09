@@ -9,7 +9,7 @@ body {
 
 h1, h2 {
     text-align: center;
-    color: #FFB81C;
+    color: #FFEB3B;
 }
 
 .main-container {
@@ -191,7 +191,7 @@ h1, h2 {
 
 .welcome-title {
     font-size: 42px;
-    color: #FFB81C;
+    color: #FFEB3B;
     margin-bottom: 30px;
     text-align: center;
     font-weight: 600;
@@ -232,7 +232,7 @@ h1, h2 {
 
 .combo-box {
     padding: 12px 16px;
-    border: 2px solid #FFB81C;
+    border: 2px solid #FFEB3B;
     border-radius: 6px;
     font-size: 16px;
     background: white;
@@ -256,7 +256,7 @@ h1, h2 {
 .proceed-button {
     margin-top: auto;
     margin-bottom: 20px;
-    background: #FFB81C;
+    background: #FFEB3B;
     color: black;
     border: none;
     padding: 16px 32px;
@@ -277,7 +277,7 @@ h1, h2 {
 
 .proceed-button:not(:disabled):hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 184, 28, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 235, 59, 0.3);
 }
 
 .proceed-button .material-icons {
@@ -310,8 +310,8 @@ h1, h2 {
 
 .search-box input:focus {
     outline: none;
-    border-color: #FFB81C;
-    box-shadow: 0 0 0 3px rgba(255, 184, 28, 0.2);
+    border-color: #FFEB3B;
+    box-shadow: 0 0 0 3px rgba(255, 235, 59, 0.2);
 }
 
 .search-icon {
@@ -347,7 +347,7 @@ h1, h2 {
 }
 
 .suggestion-item:hover {
-    background-color: rgba(255, 184, 28, 0.1);
+    background-color: rgba(255, 235, 59, 0.1);
 }
 
 .program-cards {
@@ -375,26 +375,26 @@ h1, h2 {
 }
 
 .program-card:hover {
-    border-color: #FFB81C;
-    background: rgba(255, 184, 28, 0.1);
+    border-color: #FFEB3B;
+    background: rgba(255, 235, 59, 0.1);
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(255, 184, 28, 0.2);
+    box-shadow: 0 8px 16px rgba(255, 235, 59, 0.2);
 }
 
 .program-card.selected {
-    border-color: #FFB81C;
-    background: rgba(255, 184, 28, 0.15);
+    border-color: #FFEB3B;
+    background: rgba(255, 235, 59, 0.15);
 }
 
 .card-icon {
     width: 200px;
     height: 200px;
-    background: #FFB81C;
+    background: #FFEB3B;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: black;
     font-size: 160px !important;
     margin-bottom: 15px;
     animation: float 3s ease-in-out infinite;
@@ -438,26 +438,26 @@ h1, h2 {
 }
 
 .role-card:hover {
-    border-color: #FFB81C;
-    background: rgba(255, 184, 28, 0.1);
+    border-color: #FFEB3B;
+    background: rgba(255, 235, 59, 0.1);
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(255, 184, 28, 0.2);
+    box-shadow: 0 8px 16px rgba(255, 235, 59, 0.2);
 }
 
 .role-card.selected {
-    border-color: #FFB81C;
-    background: rgba(255, 184, 28, 0.15);
+    border-color: #FFEB3B;
+    background: rgba(255, 235, 59, 0.15);
 }
 
 .role-icon {
     width: 180px;
     height: 180px;
-    background: #FFB81C;
+    background: #FFEB3B;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: black;
     font-size: 140px !important;
     margin-bottom: 15px;
     animation: float 3s ease-in-out infinite;
@@ -536,18 +536,18 @@ h1, h2 {
 }
 
 .role-option input[type="radio"]:checked + .role-content {
-    border-color: #FFB81C;
-    background-color: rgba(255, 184, 28, 0.05);
+    border-color: #FFEB3B;
+    background-color: rgba(255, 235, 59, 0.05);
 }
 
 .role-option input[type="radio"]:checked + .role-content .material-icons {
-    color: #FFB81C;
+    color: #FFEB3B;
 }
 
 .proceed-button {
     margin-top: auto;
     margin-bottom: 20px;
-    background: #FFB81C;
+    background: #FFEB3B;
     color: black;
     border: none;
     padding: 16px 32px;
@@ -568,7 +568,7 @@ h1, h2 {
 
 .proceed-button:not(:disabled):hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 184, 28, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 235, 59, 0.3);
 }
 
 .proceed-button .material-icons {
@@ -607,7 +607,7 @@ h1, h2 {
 .selection-container h2 {
     font-size: 36px;
     margin-bottom: 30px;
-    color: #FFB81C;
+    color: #FFEB3B;
     text-align: center;
 }
 
@@ -702,8 +702,8 @@ h1, h2 {
 
 .outcome-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 184, 28, 0.2);
-    border-color: #FFB81C;
+    box-shadow: 0 4px 12px rgba(255, 235, 59, 0.2);
+    border-color: #FFEB3B;
 }
 
 .outcome-header {
@@ -726,58 +726,44 @@ h1, h2 {
 
 .outcome-status {
     position: absolute;
-    right: 20px;
     bottom: 20px;
-    padding: 10px 24px;
-    border-radius: 24px;
+    right: 20px;
+    padding: 8px 16px;
+    border-radius: 6px;
     font-size: 22px;
     font-weight: 600;
-    border: 3px solid;
-    letter-spacing: 0.8px;
     min-width: 140px;
     text-align: center;
 }
 
+.status-on-track, .status-executing {
+    background-color: rgba(76, 175, 80, 0.2);
+    border: 2px solid #4CAF50;
+    color: #69F0AE;
+}
+
 .status-closed {
-    color: #00B8D9;
-    border-color: #00B8D9;
-    background-color: rgba(0, 184, 217, 0.2);
-}
-
-.status-on-track {
-    color: #36B37E;
-    border-color: #36B37E;
-    background-color: rgba(54, 179, 126, 0.2);
-}
-
-.status-in-progress {
-    color: #36B37E;
-    border-color: #36B37E;
-    background-color: rgba(54, 179, 126, 0.2);
-}
-
-.status-executing {
-    color: #36B37E;
-    border-color: #36B37E;
-    background-color: rgba(54, 179, 126, 0.2);
+    background-color: rgba(33, 150, 243, 0.2);
+    border: 2px solid #2196F3;
+    color: #40C4FF;
 }
 
 .status-on-hold {
-    color: #8F9BA6;
-    border-color: #8F9BA6;
-    background-color: rgba(143, 155, 166, 0.2);
+    background-color: rgba(158, 158, 158, 0.2);
+    border: 2px solid #9E9E9E;
+    color: #E0E0E0;
 }
 
-.status-blocked {
-    color: #FF5630;
-    border-color: #FF5630;
-    background-color: rgba(255, 86, 48, 0.2);
+.status-open {
+    background-color: rgba(255, 152, 0, 0.2);
+    border: 2px solid #FF9800;
+    color: #FFB74D;
 }
 
-.status-at-risk {
-    color: #FF5630;
-    border-color: #FF5630;
-    background-color: rgba(255, 86, 48, 0.2);
+.status-respond {
+    background-color: rgba(244, 67, 54, 0.2);
+    border: 2px solid #F44336;
+    color: #FF5252;
 }
 
 /* Remove the old status icon styles since we're not using them anymore */
@@ -805,7 +791,7 @@ h1, h2 {
 .error-message .material-icons,
 .empty-state .material-icons {
     font-size: 48px;
-    color: #FFB81C;
+    color: #FFEB3B;
     margin-bottom: 16px;
 }
 
@@ -832,7 +818,7 @@ h1, h2 {
 }
 
 .stakeholder-card .material-icons {
-    color: #FFB81C;
+    color: #FFEB3B;
     font-size: 20px;
 }
 
@@ -866,7 +852,7 @@ h1, h2 {
 }
 
 .dependency-card .material-icons {
-    color: #FFB81C;
+    color: #FFEB3B;
     font-size: 20px;
 }
 
@@ -911,7 +897,7 @@ h1, h2 {
 }
 
 .initiative-status.in-progress {
-    background-color: #FFB81C;
+    background-color: #FFEB3B;
 }
 
 .initiative-status.planned {

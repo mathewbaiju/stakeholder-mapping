@@ -40,17 +40,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Get the program name from URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const program = urlParams.get('program');
+    // Get the program name from URL
+    let program;
+    if (window.location.pathname.includes('/explore/')) {
+        // GitHub Pages path: /explore/program-name/role.html
+        program = window.location.pathname.split('/')[2];
+    } else {
+        // Local development path: /explore?program=program-name
+        const urlParams = new URLSearchParams(window.location.search);
+        program = urlParams.get('program');
+    }
     
-    // Fetch program data from the API
-    fetch('/api/data')
+    // Determine the API endpoint based on environment
+    let apiUrl;
+    if (window.location.pathname.includes('/explore/')) {
+        // GitHub Pages: use static JSON files
+        apiUrl = `/api/data/${program}.json`;
+    } else {
+        // Local development: use Flask API endpoint
+        apiUrl = `/api/data?program=${program}`;
+    }
+
+    // Fetch program data
+    fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             if (data.program && data.program.depends_on) {
-                const outcomes = data.program.depends_on.filter(item => item.type === 'outcome');
-                displayOutcomes(outcomes);
+                displayOutcomes(data.program.depends_on);
             }
         })
         .catch(error => {
@@ -83,9 +99,11 @@ function displayOutcomes(outcomes) {
         'On Track': 2,
         'In Progress': 2,
         'Executing': 2,
+        'open': 3,
         'On Hold': 3,
         'Blocked': 4,
-        'At Risk': 4
+        'At Risk': 4,
+        'Respond': 5
     };
 
     outcomes.sort((a, b) => {
@@ -93,7 +111,20 @@ function displayOutcomes(outcomes) {
     });
 
     const outcomeCards = outcomes.map(outcome => {
-        const statusClass = outcome.status.toLowerCase().replace(/\s+/g, '-');
+        // Map 'Executing' to 'On Track' for display
+        let displayStatus = outcome.status;
+        if (displayStatus === 'Executing') {
+            displayStatus = 'ON TRACK';
+        } else {
+            displayStatus = displayStatus.toUpperCase();
+        }
+
+        // Use 'on-track' CSS class for both 'On Track' and 'Executing' statuses
+        let statusClass = outcome.status.toLowerCase().replace(/\s+/g, '-');
+        if (statusClass === 'executing') {
+            statusClass = 'on-track';
+        }
+
         return `
             <div class="outcome-card" onclick="window.open('https://jira.autodesk.com/browse/${outcome.id}', '_blank')">
                 <div class="outcome-info">
@@ -101,7 +132,7 @@ function displayOutcomes(outcomes) {
                         <h3>${outcome.name}</h3>
                     </div>
                 </div>
-                <div class="outcome-status status-${statusClass}">${outcome.status.toUpperCase()}</div>
+                <div class="outcome-status status-${statusClass}">${displayStatus}</div>
             </div>
         `;
     }).join('');
@@ -110,17 +141,19 @@ function displayOutcomes(outcomes) {
 }
 
 function getStatusClass(status) {
-    switch (status) {
-        case 'Closed':
+    switch (status.toLowerCase()) {
+        case 'closed':
             return 'completed';
-        case 'On Track':
-        case 'In Progress':
-        case 'Executing':
+        case 'on track':
+        case 'in progress':
+        case 'executing':
             return 'in-progress';
-        case 'On Hold':
+        case 'open':
+        case 'on hold':
             return 'on-hold';
-        case 'Blocked':
-        case 'At Risk':
+        case 'blocked':
+        case 'at risk':
+        case 'respond':
             return 'blocked';
         default:
             return 'planned';

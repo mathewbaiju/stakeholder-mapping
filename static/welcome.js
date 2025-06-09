@@ -103,8 +103,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 y: -30,
                 duration: 0.5,
                 onComplete: () => {
-                    // Navigate to the next page
-                    window.location.href = `/explore?program=${selectedProgram}&role=${selectedRole}`;
+                    // Determine the target URL based on environment
+                    let targetUrl;
+                    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                        // Local development
+                        targetUrl = `/explore?program=${selectedProgram}&role=${selectedRole}`;
+                    } else {
+                        // GitHub Pages
+                        targetUrl = `/explore/${selectedProgram}/${selectedRole}.html`;
+                    }
+                    window.location.href = targetUrl;
                 }
             });
         }

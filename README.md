@@ -1,6 +1,55 @@
 # Platform Strategic Initiatives Explorer
 
-This tool provides a dynamic, interactive visualization of program initiatives and their dependencies. It launches a web-based interface that reads data from a `program_data.json` file and generates a color-coded, interactive dependency map.
+A web application to explore and visualize platform strategic initiatives, their outcomes, and dependencies.
+
+## GitHub Pages Setup
+
+This site is configured to be hosted on GitHub Pages. To set it up:
+
+1. Push this repository to GitHub
+2. Go to your repository settings
+3. Under "Pages", select:
+   - Source: Deploy from a branch
+   - Branch: gh-pages
+   - Folder: / (root)
+4. Click Save
+
+The GitHub Actions workflow will automatically:
+1. Generate static HTML pages from the Flask templates
+2. Copy all necessary static files
+3. Deploy to the gh-pages branch
+
+## Development
+
+To run the site locally:
+
+1. Install Python dependencies:
+   ```bash
+   pip install flask jinja2
+   ```
+
+2. Run the Flask development server:
+   ```bash
+   python app.py
+   ```
+
+3. To build the static site:
+   ```bash
+   python build_static.py
+   ```
+
+## Structure
+
+- `/data/` - JSON data files for programs
+- `/static/` - CSS, JavaScript, and other static assets
+- `/templates/` - HTML templates
+- `/docs/` - Generated static site (don't edit directly)
+
+## Adding/Updating Content
+
+1. Edit the JSON files in the `/data/` directory
+2. Commit and push your changes
+3. GitHub Actions will automatically rebuild and deploy the site
 
 ## Tech Stack
 

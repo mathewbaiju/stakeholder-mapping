@@ -1,0 +1,79 @@
+{
+    "id": "PBE-3852",
+    "name": "Developer Tools",
+    "description": "Program managing implementation of developer environment tools, systems that allow us to integrate a variety of tooling and vendors within the CloudOS platform, to facilitate and extend our platform in a secure and compliant manner",
+    "status": "In Progress",
+    "start_date": "2024-01-01",
+    "end_date": "2024-12-31",
+    "owner": "Platform Team",
+    "depends_on": [
+        {
+            "type": "outcome",
+            "id": "PBE-3906",
+            "name": "Improve platform resiliency and suppo...",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3908",
+            "name": "Deprecation of Legacy Tooling and Inf...",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3909",
+            "name": "Improve the overall security posture ...",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3911",
+            "name": "Enhanced security posture via modern ...",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3912",
+            "name": "Privilege Access Management",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-4108",
+            "name": "Improve overall health of the interna...",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3905",
+            "name": "CSAT for Platform Capabilities in pla...",
+            "status": "On Track"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3907",
+            "name": "Early Adopters Migrate from GitHub En...",
+            "status": "On Track"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3910",
+            "name": "Day 1 Access to Developer tools and i...",
+            "status": "On Track"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-4107",
+            "name": "Least privileged access via role and ...",
+            "status": "On Track"
+        }
+    ],
+    "is_dependency_for": [
+        {
+            "type": "initiative",
+            "id": "PBE-2688",
+            "name": "Developer Productivity",
+            "status": "Executing"
+        }
+    ]
+} 

@@ -24,26 +24,19 @@
         <div class="selection-container">
             <h2>Select a Program</h2>
             <div class="program-cards">
-                <div class="program-card" data-program="cloud-infrastructure">
-                    <span class="material-icons card-icon">cloud</span>
-                    <h3>Cloud Infrastructure</h3>
+                {% for program in programs %}
+                <div class="program-card" data-program="{{ program.file.split('/')[1].replace('.json', '') }}">
+                    <span class="material-icons card-icon">
+                        {% if program.name == 'Cloud Infrastructure' %}cloud
+                        {% elif program.name == 'Internal Developer Portal' %}web
+                        {% elif program.name == 'Developer Tools' %}code
+                        {% elif program.name == 'Observability' %}visibility
+                        {% elif program.name == 'Product and App Delivery' %}rocket_launch
+                        {% endif %}
+                    </span>
+                    <h3>{{ program.name }}</h3>
                 </div>
-                <div class="program-card" data-program="internal-developer-portal">
-                    <span class="material-icons card-icon">web</span>
-                    <h3>Internal Developer Portal</h3>
-                </div>
-                <div class="program-card" data-program="developer-tools">
-                    <span class="material-icons card-icon">code</span>
-                    <h3>Developer Tools</h3>
-                </div>
-                <div class="program-card" data-program="observability">
-                    <span class="material-icons card-icon">visibility</span>
-                    <h3>Observability</h3>
-                </div>
-                <div class="program-card" data-program="product-app-delivery">
-                    <span class="material-icons card-icon">rocket_launch</span>
-                    <h3>Product and App Delivery</h3>
-                </div>
+                {% endfor %}
             </div>
 
             <h2>Select Your Role</h2>

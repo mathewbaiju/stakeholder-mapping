@@ -1,0 +1,91 @@
+{
+    "id": "PBE-3850",
+    "name": "Internal Developer Portal",
+    "description": "Driving toward the future state in which all internal platform engagement begins with Beacon, by providing new platform capabilities and patterns for internal developers to help them deliver more value and reduce their inefficiencies.",
+    "status": "In Progress",
+    "start_date": "2024-01-01",
+    "end_date": "2024-12-31",
+    "owner": "Swati Jain",
+    "depends_on": [
+        {
+            "type": "outcome",
+            "id": "PBE-3898",
+            "name": "Display CloudOS information in Beacon",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3899",
+            "name": "Complete service onboarding activitie...",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3900",
+            "name": "Desktop Central Registry",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3901",
+            "name": "Trust Availability Metric in Beacon",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3902",
+            "name": "Onboard Business Services from Servic...",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3903",
+            "name": "Automatically create and update Syste...",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3904",
+            "name": "Onboard desktop software to Beacon",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-4087",
+            "name": "Define Inner Sourcing Standards",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-4346",
+            "name": "Import UK+4 entities to Beacon Produc...",
+            "status": "open"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-3897",
+            "name": "Create and view synthetics in Beacon",
+            "status": "Closed"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-4088",
+            "name": "Adopt the new Autodesk system model f...",
+            "status": "Closed"
+        },
+        {
+            "type": "outcome",
+            "id": "PBE-4343",
+            "name": "Complex Synthetic Checks in Beacon wi...",
+            "status": "On Track"
+        }
+    ],
+    "is_dependency_for": [
+        {
+            "type": "initiative",
+            "id": "PBE-2688",
+            "name": "Developer Productivity",
+            "status": "Executing"
+        }
+    ]
+} 
