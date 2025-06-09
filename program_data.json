@@ -12,7 +12,7 @@
       {
         "type": "outcome",
         "id": "PBE-3895",
-        "name": "Azure Kubernetes Service support for ...",
+        "name": "Azure Kubernetes Service support for GAIA",
         "status": "On Hold"
       },
       {
@@ -38,73 +38,73 @@
       {
         "type": "outcome",
         "id": "PBE-3885",
-        "name": "Adoption of CloudOS capabilities & ke...",
+        "name": "Adoption of CloudOS capabilities & key features grows",
         "status": "On Track"
       },
       {
         "type": "outcome",
         "id": "PBE-3886",
-        "name": "Standards are more widely implemented...",
+        "name": "Standards are more widely implemented within the platform",
         "status": "On Track"
       },
       {
         "type": "outcome",
         "id": "PBE-3887",
-        "name": "R@S: Observability/Monitoring via new...",
+        "name": "R@S: Observability/Monitoring via new stack put in place, lowering costly dependency on legacy tools and services in regions",
         "status": "On Track"
       },
       {
         "type": "outcome",
         "id": "PBE-3888",
-        "name": "R@S: Prerequisites for R13N - Network...",
+        "name": "R@S: Prerequisites for R13N - Networking and AWS Account Configuration/Management are put in place reducing the need to manually wait on Network Provisioning",
         "status": "On Track"
       },
       {
         "type": "outcome",
         "id": "PBE-3889",
-        "name": "R@S: Service to Service Allow Listin...",
+        "name": "R@S: Service to Service Allow Listing supports efficient, repeatable, processes for future regions",
         "status": "On Track"
       },
       {
         "type": "outcome",
         "id": "PBE-3890",
-        "name": "R@S: Configuration Management \"extern...",
+        "name": "R@S: Configuration Management externalizes configuration, enabling it to take place outside of the application",
         "status": "On Track"
       },
       {
         "type": "outcome",
         "id": "PBE-3891",
-        "name": "R@S: Dacloud Service Support (aka \"co...",
+        "name": "R@S: Dacloud Service Support (aka convergence) allows Kubernetes to become our primary deployment mechanism",
         "status": "On Track"
       },
       {
         "type": "outcome",
         "id": "PBE-3892",
-        "name": "Formalize UCP polices and governance ...",
+        "name": "Formalize UCP polices and governance to create a stable and scalable platform for regionalization",
         "status": "On Track"
       },
       {
         "type": "outcome",
         "id": "PBE-3894",
-        "name": "Reduce cloud deployment failure rate ...",
+        "name": "Reduce cloud deployment failure rate caused by pipeline issues",
         "status": "On Track"
       },
       {
         "type": "outcome",
         "id": "PBE-3896",
-        "name": "Provide a delightful employee experie...",
+        "name": "Provide a delightful employee experience by improving the network performance with Multi Cloud Edge Expansion (from 5 to 10 regions globally)",
         "status": "On Track"
       },
       {
         "type": "outcome",
         "id": "PBE-4089",
-        "name": "R@S: System Model Adoption and Depend...",
+        "name": "R@S: System Model Adoption and Dependency Tree Generation based on System Model",
         "status": "On Track"
       },
       {
         "type": "outcome",
         "id": "PBE-2652",
-        "name": "CloudOS Compute to Autodesk Compute P...",
+        "name": "CloudOS Compute to Autodesk Compute Platform (ACP) Migration",
         "status": "Executing"
       }
     ],

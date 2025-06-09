@@ -1,16 +1,21 @@
+from flask import Flask, jsonify, render_template, request
 import json
-from flask import Flask, jsonify, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
-def index():
-    """Serves the main HTML page."""
-    return render_template('index.html')
+def welcome():
+    return render_template('welcome.html')
+
+@app.route('/explore')
+def explore():
+    program = request.args.get('program')
+    role = request.args.get('role')
+    return render_template('explore.html', program=program, role=role)
 
 @app.route('/api/data')
 def get_data():
-    """Provides the dependency data as JSON."""
+    program = request.args.get('program')
     with open('program_data.json', 'r') as f:
         data = json.load(f)
     return jsonify(data)

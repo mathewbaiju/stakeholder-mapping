@@ -1,14 +1,15 @@
 body {
-    font-family: sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: url('/static/autodesk-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
 }
 
 h1, h2 {
     text-align: center;
-    color: #0056b3;
+    color: #FFB81C;
 }
 
 .main-container {
@@ -158,4 +159,806 @@ h1, h2 {
     border: 1px solid #ddd;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-} 
+}
+
+/* Welcome Page Styles */
+.welcome-page {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    background: url('/static/autodesk-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.welcome-container {
+    max-width: 1800px;
+    margin: 20px 80px;
+    padding: 40px 80px;
+    background: rgba(0, 0, 0, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 1;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-title {
+    font-size: 42px;
+    color: #FFB81C;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.welcome-subtitle {
+    color: #333333;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.search-container {
+    margin-top: 30px;
+}
+
+.combo-box-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.combo-box-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.combo-box-group label {
+    color: #000000;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.combo-box {
+    padding: 12px 16px;
+    border: 2px solid #FFB81C;
+    border-radius: 6px;
+    font-size: 16px;
+    background: white;
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.combo-box:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.combo-box option {
+    padding: 12px;
+    background: white;
+    color: #000000;
+}
+
+.proceed-button {
+    margin-top: auto;
+    margin-bottom: 20px;
+    background: #FFB81C;
+    color: black;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 30px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 240px;
+    font-weight: 600;
+    align-self: center;
+}
+
+.proceed-button:disabled {
+    background: #333;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.proceed-button:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 184, 28, 0.3);
+}
+
+.proceed-button .material-icons {
+    transition: transform 0.3s ease;
+}
+
+.proceed-button:not(:disabled):hover .material-icons {
+    transform: translateX(5px);
+}
+
+/* New Welcome Page Components */
+.program-search {
+    margin-bottom: 30px;
+}
+
+.search-box {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px 45px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    font-size: 16px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #FFB81C;
+    box-shadow: 0 0 0 3px rgba(255, 184, 28, 0.2);
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.program-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.program-suggestions.active {
+    display: block;
+}
+
+.suggestion-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.suggestion-item:hover {
+    background-color: rgba(255, 184, 28, 0.1);
+}
+
+.program-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.program-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-width: 280px;
+    height: 420px;
+    justify-content: center;
+}
+
+.program-card:hover {
+    border-color: #FFB81C;
+    background: rgba(255, 184, 28, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(255, 184, 28, 0.2);
+}
+
+.program-card.selected {
+    border-color: #FFB81C;
+    background: rgba(255, 184, 28, 0.15);
+}
+
+.card-icon {
+    width: 200px;
+    height: 200px;
+    background: #FFB81C;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 160px !important;
+    margin-bottom: 15px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.card-icon .material-icons {
+    font-size: inherit !important;
+    transform: scale(1.4);
+}
+
+.program-card h3 {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 500;
+    color: white;
+    line-height: 1.3;
+}
+
+.role-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.role-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-width: 280px;
+    height: 400px;
+    justify-content: center;
+}
+
+.role-card:hover {
+    border-color: #FFB81C;
+    background: rgba(255, 184, 28, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(255, 184, 28, 0.2);
+}
+
+.role-card.selected {
+    border-color: #FFB81C;
+    background: rgba(255, 184, 28, 0.15);
+}
+
+.role-icon {
+    width: 180px;
+    height: 180px;
+    background: #FFB81C;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 140px !important;
+    margin-bottom: 15px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.role-icon .material-icons {
+    font-size: inherit !important;
+    transform: scale(1.4);
+}
+
+.role-card h3 {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 500;
+    color: white;
+    line-height: 1.3;
+}
+
+.role-selector {
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.role-selector h2 {
+    text-align: left;
+    margin-bottom: 25px;
+    font-size: 1.3em;
+    color: #000;
+    font-weight: 600;
+}
+
+.role-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.role-option {
+    cursor: pointer;
+}
+
+.role-option input[type="radio"] {
+    display: none;
+}
+
+.role-content {
+    background: white;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.role-content .material-icons {
+    font-size: 32px;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.role-content span:not(.material-icons) {
+    font-size: 15px;
+    color: #000;
+    font-weight: 500;
+}
+
+.role-option:hover .role-content {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.role-option input[type="radio"]:checked + .role-content {
+    border-color: #FFB81C;
+    background-color: rgba(255, 184, 28, 0.05);
+}
+
+.role-option input[type="radio"]:checked + .role-content .material-icons {
+    color: #FFB81C;
+}
+
+.proceed-button {
+    margin-top: auto;
+    margin-bottom: 20px;
+    background: #FFB81C;
+    color: black;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 30px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 240px;
+    font-weight: 600;
+    align-self: center;
+}
+
+.proceed-button:disabled {
+    background: #333;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.proceed-button:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 184, 28, 0.3);
+}
+
+.proceed-button .material-icons {
+    transition: transform 0.3s ease;
+}
+
+.proceed-button:not(:disabled):hover .material-icons {
+    transform: translateX(5px);
+}
+
+/* Animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+.card-icon {
+    animation: float 3s ease-in-out infinite;
+}
+
+.role-content {
+    animation: float 3s ease-in-out infinite;
+    animation-delay: calc(var(--animation-order) * 0.2s);
+}
+
+/* Welcome Page Components */
+.selection-container {
+    margin-top: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.selection-container h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #FFB81C;
+    text-align: center;
+}
+
+.program-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.role-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.proceed-button {
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+/* Explore Page Styles */
+.explore-page {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.explore-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.explore-container header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.autodesk-logo-small {
+    height: 40px;
+    width: auto;
+}
+
+.context-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.context-info span {
+    font-size: 14px;
+    color: #666;
+}
+
+.context-info strong {
+    color: white;
+    font-size: 24px;
+    margin-left: 8px;
+}
+
+.program-label, .role-label {
+    color: white !important;
+    font-size: 24px !important;
+}
+
+.outcomes-section {
+    margin-top: 30px;
+}
+
+.outcomes-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.outcome-card {
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.outcome-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 184, 28, 0.2);
+    border-color: #FFB81C;
+}
+
+.outcome-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.outcome-header h3 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+    line-height: 1.4;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+}
+
+.outcome-status {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    padding: 10px 24px;
+    border-radius: 24px;
+    font-size: 22px;
+    font-weight: 600;
+    border: 3px solid;
+    letter-spacing: 0.8px;
+    min-width: 140px;
+    text-align: center;
+}
+
+.status-closed {
+    color: #00B8D9;
+    border-color: #00B8D9;
+    background-color: rgba(0, 184, 217, 0.2);
+}
+
+.status-on-track {
+    color: #36B37E;
+    border-color: #36B37E;
+    background-color: rgba(54, 179, 126, 0.2);
+}
+
+.status-in-progress {
+    color: #36B37E;
+    border-color: #36B37E;
+    background-color: rgba(54, 179, 126, 0.2);
+}
+
+.status-executing {
+    color: #36B37E;
+    border-color: #36B37E;
+    background-color: rgba(54, 179, 126, 0.2);
+}
+
+.status-on-hold {
+    color: #8F9BA6;
+    border-color: #8F9BA6;
+    background-color: rgba(143, 155, 166, 0.2);
+}
+
+.status-blocked {
+    color: #FF5630;
+    border-color: #FF5630;
+    background-color: rgba(255, 86, 48, 0.2);
+}
+
+.status-at-risk {
+    color: #FF5630;
+    border-color: #FF5630;
+    background-color: rgba(255, 86, 48, 0.2);
+}
+
+/* Remove the old status icon styles since we're not using them anymore */
+.status-icon {
+    display: none;
+}
+
+.outcome-status-text {
+    display: none;
+}
+
+/* Hide the Jira link text but keep the clickable card */
+.jira-link {
+    display: none;
+}
+
+/* Error and Empty States */
+.error-message,
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+}
+
+.error-message .material-icons,
+.empty-state .material-icons {
+    font-size: 48px;
+    color: #FFB81C;
+    margin-bottom: 16px;
+}
+
+.error-message p,
+.empty-state p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Stakeholder Cards */
+.stakeholder-card {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.stakeholder-card:hover {
+    transform: translateY(-2px);
+}
+
+.stakeholder-card .material-icons {
+    color: #FFB81C;
+    font-size: 20px;
+}
+
+.stakeholder-info h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.stakeholder-info p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Dependency Cards */
+.dependency-card {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.dependency-card:hover {
+    transform: translateY(-2px);
+}
+
+.dependency-card .material-icons {
+    color: #FFB81C;
+    font-size: 20px;
+}
+
+.dependency-info h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.dependency-info p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Initiative Cards */
+.initiative-card {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.initiative-card:hover {
+    transform: translateY(-2px);
+}
+
+.initiative-status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.initiative-status.completed {
+    background-color: #4CAF50;
+}
+
+.initiative-status.in-progress {
+    background-color: #FFB81C;
+}
+
+.initiative-status.planned {
+    background-color: #2196F3;
+}
+
+.initiative-info h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.initiative-info p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .visualization-layout {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .visualization-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .explore-container header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .context-info {
+        margin: 20px 0 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+/* Add animation delay for each role card to create a wave effect */
+.role-card:nth-child(1) .role-icon { animation-delay: 0s; }
+.role-card:nth-child(2) .role-icon { animation-delay: 0.2s; }
+.role-card:nth-child(3) .role-icon { animation-delay: 0.4s; }
+.role-card:nth-child(4) .role-icon { animation-delay: 0.6s; }
+.role-card:nth-child(5) .role-icon { animation-delay: 0.8s; } 
