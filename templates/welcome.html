@@ -8,64 +8,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body class="welcome-page">
+<body class="welcome-page" data-page="welcome">
     <div class="welcome-background">
         <div class="gradient-overlay"></div>
-        <div class="animated-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
+        <h1 class="welcome-title">Platform Strategic Initiatives Explorer</h1>
     </div>
     
     <div class="welcome-container">
-        <h1 class="welcome-title">Platform Strategic Initiatives Explorer</h1>
         
         <div class="selection-container">
-            <h2>Select a Program</h2>
-            <div class="program-cards">
-                {% for program in programs %}
-                <div class="program-card" data-program="{{ program.file.split('/')[1].replace('.json', '') }}">
-                    <span class="material-icons card-icon">
-                        {% if program.name == 'Cloud Infrastructure' %}cloud
-                        {% elif program.name == 'Internal Developer Portal' %}web
-                        {% elif program.name == 'Developer Tools' %}code
-                        {% elif program.name == 'Observability' %}visibility
-                        {% elif program.name == 'Product and App Delivery' %}rocket_launch
-                        {% endif %}
-                    </span>
-                    <h3>{{ program.name }}</h3>
-                </div>
-                {% endfor %}
-            </div>
-
-            <h2>Select Your Role</h2>
-            <div class="role-cards">
-                <div class="role-card" data-role="executive">
-                    <span class="material-icons role-icon">corporate_fare</span>
-                    <h3>Executive</h3>
-                </div>
-                <div class="role-card" data-role="program-manager">
-                    <span class="material-icons role-icon">account_tree</span>
-                    <h3>Program Manager</h3>
-                </div>
-                <div class="role-card" data-role="engineering-manager">
-                    <span class="material-icons role-icon">engineering</span>
-                    <h3>Engineering Manager</h3>
-                </div>
-                <div class="role-card" data-role="product-manager">
-                    <span class="material-icons role-icon">psychology</span>
-                    <h3>Product Manager</h3>
+            <div class="selection-section">
+                <h2>Select a Program</h2>
+                <div class="icon-grid">
+                    {% for program in programs %}
+                    <div class="icon-item program-icon" data-program="{{ program.file.split('/')[1].replace('.json', '') }}">
+                        <div class="icon-circle">
+                            {% if program.name == "Product and App Delivery" %}
+                                <span class="material-icons">computer</span>
+                            {% elif program.name == "Observability" %}
+                                <span class="material-icons">visibility</span>
+                            {% elif program.name == "Developer Tools" %}
+                                <span class="material-icons">code</span>
+                            {% elif program.name == "Internal Developer Portal" %}
+                                <span class="material-icons">space_dashboard</span>
+                            {% elif program.name == "Cloud Infrastructure" %}
+                                <span class="material-icons">cloud</span>
+                            {% else %}
+                                <span class="material-icons">architecture</span>
+                            {% endif %}
+                        </div>
+                        <h3>{{ program.name }}</h3>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
 
-        <button class="proceed-button" disabled>
-            <span>Proceed</span>
+        <button class="proceed-button" onclick="proceedToRoles()">
+            <span>Proceed to Role Selection</span>
             <span class="material-icons">arrow_forward</span>
         </button>
     </div>
 
-    <script src="/static/welcome.js"></script>
+    <script>
+        function proceedToRoles() {
+            const selectedProgram = document.querySelector('.program-icon.selected');
+            if (selectedProgram) {
+                const programId = selectedProgram.dataset.program;
+                window.location.href = `/select-role?program=${programId}`;
+            }
+        }
+
+        document.querySelectorAll('.program-icon').forEach(icon => {
+            icon.addEventListener('click', () => {
+                document.querySelectorAll('.program-icon').forEach(i => i.classList.remove('selected'));
+                icon.classList.add('selected');
+                document.querySelector('.proceed-button').removeAttribute('disabled');
+            });
+        });
+    </script>
 </body>
 </html> 

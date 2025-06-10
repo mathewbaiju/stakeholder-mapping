@@ -3,8 +3,8 @@
     "name": "Internal Developer Portal",
     "description": "Driving toward the future state in which all internal platform engagement begins with Beacon, by providing new platform capabilities and patterns for internal developers to help them deliver more value and reduce their inefficiencies.",
     "status": "In Progress",
-    "start_date": "2024-01-01",
-    "end_date": "2024-12-31",
+    "start_date": "2024-02-01",
+    "end_date": "2025-01-31",
     "owner": "Swati Jain",
     "depends_on": [
         {

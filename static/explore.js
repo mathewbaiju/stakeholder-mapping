@@ -93,17 +93,17 @@ function displayOutcomes(outcomes) {
         return;
     }
 
-    // Sort outcomes by status: Completed first, then In Progress, then Planned
+    // Sort outcomes by status: Respond first, then Open, then On Track, then Closed
     const statusOrder = {
-        'Closed': 1,
-        'On Track': 2,
-        'In Progress': 2,
-        'Executing': 2,
-        'open': 3,
-        'On Hold': 3,
-        'Blocked': 4,
-        'At Risk': 4,
-        'Respond': 5
+        'Respond': 1,
+        'At Risk': 1,
+        'Blocked': 1,
+        'open': 2,
+        'On Hold': 2,
+        'On Track': 3,
+        'In Progress': 3,
+        'Executing': 3,
+        'Closed': 4
     };
 
     outcomes.sort((a, b) => {
@@ -119,10 +119,14 @@ function displayOutcomes(outcomes) {
             displayStatus = displayStatus.toUpperCase();
         }
 
-        // Use 'on-track' CSS class for both 'On Track' and 'Executing' statuses
+        // Use appropriate CSS class for each status
         let statusClass = outcome.status.toLowerCase().replace(/\s+/g, '-');
         if (statusClass === 'executing') {
             statusClass = 'on-track';
+        }
+        // Ensure 'on hold' gets its own class
+        if (statusClass === 'on-hold') {
+            statusClass = 'on-hold';
         }
 
         return `

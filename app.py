@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, redirect
 import json
 import os
 
@@ -33,6 +33,13 @@ def explore():
     program = request.args.get('program')
     role = request.args.get('role')
     return render_template('explore.html', program=program, role=role)
+
+@app.route('/select-role')
+def select_role():
+    program = request.args.get('program')
+    if not program:
+        return redirect('/')
+    return render_template('select_role.html')
 
 @app.route('/api/data')
 def get_data():
