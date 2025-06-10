@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Role - Platform Strategic Initiatives Explorer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="welcome-page">
+    <div class="welcome-background">
+        <div class="gradient-overlay"></div>
+    </div>
+    
+    <div class="welcome-container">
+        <div class="selection-container">
+            <div class="selection-section">
+                <h2>Select Your Role</h2>
+                <div class="icon-grid role-grid">
+                    <div class="icon-item role-icon" data-role="executive">
+                        <div class="icon-circle">
+                            <span class="material-icons">supervisor_account</span>
+                        </div>
+                        <h3>Executive</h3>
+                        <p class="icon-description">Access high-level strategic insights</p>
+                    </div>
+                    <div class="icon-item role-icon" data-role="program-manager">
+                        <div class="icon-circle">
+                            <span class="material-icons">manage_search</span>
+                        </div>
+                        <h3>Program Manager</h3>
+                        <p class="icon-description">Track program delivery and dependencies</p>
+                    </div>
+                    <div class="icon-item role-icon" data-role="engineering-manager">
+                        <div class="icon-circle">
+                            <span class="material-icons">engineering</span>
+                        </div>
+                        <h3>Engineering Manager</h3>
+                        <p class="icon-description">Monitor technical implementation</p>
+                    </div>
+                    <div class="icon-item role-icon" data-role="product-manager">
+                        <div class="icon-circle">
+                            <span class="material-icons">psychology</span>
+                        </div>
+                        <h3>Product Manager</h3>
+                        <p class="icon-description">Review product strategy alignment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-buttons">
+            <button class="back-button" onclick="goBack()">
+                <span class="material-icons">arrow_back</span>
+                <span>Back to Programs</span>
+            </button>
+            <button class="proceed-button" onclick="proceedToView()">
+                <span>View Dashboard</span>
+                <span class="material-icons">arrow_forward</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = '/';
+        }
+
+        function proceedToView() {
+            const selectedRole = document.querySelector('.role-icon.selected');
+            if (selectedRole) {
+                const role = selectedRole.dataset.role;
+                const urlParams = new URLSearchParams(window.location.search);
+                const program = urlParams.get('program');
+                window.location.href = `/explore?program=${program}&role=${role}`;
+            }
+        }
+
+        document.querySelectorAll('.role-icon').forEach(icon => {
+            icon.addEventListener('click', () => {
+                document.querySelectorAll('.role-icon').forEach(i => i.classList.remove('selected'));
+                icon.classList.add('selected');
+                document.querySelector('.proceed-button').removeAttribute('disabled');
+            });
+        });
+    </script>
+</body>
+</html> 

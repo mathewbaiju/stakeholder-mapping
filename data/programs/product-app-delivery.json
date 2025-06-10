@@ -3,8 +3,8 @@
     "name": "Product and App Delivery",
     "description": "Program managing Desktop Product and App Delivery, the domain that provides the needed components for desktop app delivery, updates, and access",
     "status": "In Progress",
-    "start_date": "2024-01-01",
-    "end_date": "2024-12-31",
+    "start_date": "2024-02-01",
+    "end_date": "2025-01-31",
     "owner": "Nick Ottavio",
     "depends_on": [
         {
